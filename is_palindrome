@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define endl "\n"
+#define pi acos(-1.0)
+#define is_palindrome(str) equal(str.begin(),str.begin() + str.size()/2, str.rbegin())
+string clock_walk(string str)
+{
+    string h=str.substr(0,2),m=str.substr(3);
+    int minutes=stoi(m),hours=stoi(h);
+    if(minutes==59)
+        {
+         if(hours==23)
+            hours=0;
+         else
+            hours++;
+         h=(hours<10)?string("0"+to_string(hours)):to_string(hours);
+         minutes=0;
+        }
+    else
+        minutes++;
+
+    m=(minutes<10)?string("0"+to_string(minutes)):to_string(minutes);
+
+    return h+":"+m;
+}
+int main()
+{
+
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t,n,a,b,x,y,z,i=0;
+    string str,rev;
+    cin>>str;
+    while(!is_palindrome(str))
+        str=clock_walk(str),i++;
+
+    cout<<i<<endl;
+    return  0;
+}
+
