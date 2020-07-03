@@ -1,0 +1,11 @@
+data_type  bigmod(data_type n,data_type p,data_type m)
+{
+    if(p==0)
+        return 1;
+    data_type x=bigmod(n,p>>1,m);
+    x=(x*x)%m;
+    if(p&1)
+        x=(x*n)%m;
+    return x;
+
+}
