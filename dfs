@@ -1,0 +1,14 @@
+#define boro 100007
+vector< vector<data_type> > adjlist(boro);
+bitset <boro>is_visited;
+data_type weight[boro];
+void dfs(data_type a)
+{
+    if(is_visited[a])
+        return;
+    is_visited[a]=1;
+    for(auto i:adjlist[a])
+        if(is_visited[i]==0)
+            dfs(i);
+
+}
