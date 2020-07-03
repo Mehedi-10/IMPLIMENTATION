@@ -1,0 +1,26 @@
+#define boro 100007
+vector<vector<data_type> > adjlist;
+bitset<boro>is_visited;
+vector<data_type>level;
+void bfs(int s)
+{
+    queue <int> q;
+    level.resize(adjlist.size());
+    q.push(s);
+    level[s] = 0 ;
+    is_visited[s] = true;
+    while(!q.empty())
+        {
+            int p = q.front();
+            q.pop();
+            for(auto i:adjlist[p])
+                {
+                    if(is_visited[i] == false)
+                        {
+                            level[i] = level[p]+1;
+                            q.push(i);
+                            is_visited[i] = true;
+                        }
+                }
+        }
+}
