@@ -1,0 +1,1 @@
+#define rad(x)  (pi*x)/180.0
