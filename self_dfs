@@ -1,0 +1,28 @@
+#define boro 200007
+vector<vector<data_type> > adjlist;
+bitset<boro>is_visited;
+vector<data_type>edge_id;
+void self_dfs(data_type a)
+{
+    edge_id.resize(adjlist.size()+7,0);
+    is_visited.reset();
+    stack<data_type>st;
+    st.push(a);
+    while(st.size())
+        {
+            data_type u=st.top();
+            st.pop();
+            while(edge_id[u]<adjlist[u].size())
+                {
+                    data_type v=adjlist[u][edge_id[u]];
+                    edge_id[u]++;
+                    if(!is_visited[v])
+                        {
+                            is_visited[v]=1;
+                            st.push(u);
+                            st.push(v);
+                            break;
+                        }
+                }
+        }
+}
