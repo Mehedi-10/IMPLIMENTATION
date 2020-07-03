@@ -1,0 +1,14 @@
+data_type binary_search_leftmost(data_type low, data_type high, data_type T)
+{
+    data_type mid;
+
+    while (low < high)
+        {
+            mid= (low +high ) / 2;
+            if (mid < T)
+                low= mid + 1;
+            else
+                high= mid;
+        }
+    return low;
+}
