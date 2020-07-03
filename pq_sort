@@ -1,0 +1,14 @@
+struct mydata
+{
+    tuple<data_type,data_type,data_type> three;
+    mydata(data_type a,data_type b,data_type c)
+    {
+        three=make_tuple(a,b,c);
+    }
+    bool operator<(const struct mydata& other) const
+    {
+        if(get<0>(three)==get<0>(other.three))
+            return get<1>(three)>get<1>(other.three);
+        return get<0>(three) < get<0>(other.three);
+    }
+};
