@@ -1,0 +1,20 @@
+data_type nod(data_type n)
+{
+    data_type ans=1;
+    for(data_type i=0; prime[i]*prime[i]<=n; i++)
+        {
+            data_type counter=0;
+            while(n%prime[i]==0)
+                {
+                    n/=prime[i];
+                    counter++;
+
+                }
+            ans*=(counter+1);
+        }
+    if(n>1)
+        ans*=2;
+
+      return ans;
+
+}
