@@ -1,0 +1,27 @@
+data_type kadane(vector<data_type> vc)
+{
+    data_type maxsum=0,current_sum=0;
+    for(int i=0; i<vc.size(); i++)
+        {
+            current_sum+=vc[i];
+            maxsum=max(current_sum,maxsum);
+            if(current_sum<0)
+                current_sum=0;
+        }
+    return maxsum;
+}
+data_type max_sum(vector< vector<data_type> > matrix)
+{
+    data_type sum=INT_MIN;
+    for(int i=0; i<matrix.size(); i++)
+        {
+            vector<data_type> vc(matrix.size(),0);
+            for(int j=i; j<matrix.size(); j++)
+                {
+                    for(int k=0; k<matrix.size(); k++)
+                        vc[k]+=matrix[k][j];
+                    sum=max(sum,kadane(vc));
+                }
+        }
+    return sum;
+}
