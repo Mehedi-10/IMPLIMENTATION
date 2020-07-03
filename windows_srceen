@@ -1,0 +1,25 @@
+
+pair<int,int> get_screen_size()
+{
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    int columns, rows;
+    HANDLE  hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    GetConsoleScreenBufferInfo(hOut, &csbi);
+    columns = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+    rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+    maxsize=make_pair(columns-2,rows);
+    return make_pair(columns,rows);
+}
+pair<int,int> where()
+{
+   CONSOLE_SCREEN_BUFFER_INFO csbi;
+
+    GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+   return make_pair(csbi.dwCursorPosition.X,csbi.dwCursorPosition.Y);
+
+}
+int set_pos(string s,int n)
+{
+    pair<int,int> p=get_screen_size();
+    return ((p.first+2*n-1)/(2*n)-(s.size()+1)/2);
+}
