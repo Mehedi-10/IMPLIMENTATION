@@ -1,0 +1,4 @@
+data_type modulo (data_type x,data_type m)
+{
+    return (x%m+m)%m;
+}
