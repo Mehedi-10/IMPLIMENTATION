@@ -1,0 +1,53 @@
+template<typename T>
+class kmp {
+    vector<int> indx;
+public:
+    void lps(T &patt) {
+        indx.resize(patt.size(), 0);
+        int i = 0, j = 1;
+        while (j < patt.size()) {
+            if (patt[i] == patt[j])
+                indx[j] = ++i, j++;
+            else {
+                if (i != 0)
+                    i = indx[i - 1];
+                else
+                    indx[j] = 0, j++;
+            }
+        }
+    }
+
+    bool match(T &text, T &patt) {
+        int i = 0, j = 0;
+        while (j < text.size()) {
+            if (patt[i] == text[j])
+                i++, j++;
+            else {
+                if (i != 0)
+                    i = indx[i - 1];
+                else
+                    j++;
+            }
+            if (i == patt.size())
+                return true;
+        }
+        return false;
+    }
+
+    int frequency(T &text, T &patt) {
+        int i = 0, j = 0, cnt = 0;
+        while (j < text.size()) {
+            if (patt[i] == text[j])
+                i++, j++;
+            else {
+                if (i != 0)
+                    i = indx[i - 1];
+                else
+                    j++;
+            }
+            if (i == patt.size())
+                cnt++, i = indx[i - 1];
+        }
+        return cnt;
+    }
+};
